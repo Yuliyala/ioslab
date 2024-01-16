@@ -13,8 +13,8 @@ class MovieCollectionViewCell: UICollectionViewCell {
     private let albumImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 8
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 12
         imageView.layer.masksToBounds = true
         return imageView
     }()
@@ -66,7 +66,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
         releaseDateLabel.text = movie.releaseDate
     }
 
-    
     private func setupViews() {
         addSubview(albumImageView)
         addSubview(ratingBadge)
@@ -75,7 +74,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         
         albumImageView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.size.height.equalTo(256)
+            make.height.equalTo(250)
         }
         
         ratingBadge.snp.makeConstraints { make in
@@ -117,5 +116,3 @@ extension UIImageView {
         }.resume()
     }
 }
-
-
