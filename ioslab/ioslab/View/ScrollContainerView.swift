@@ -11,7 +11,6 @@ import SnapKit
 final class ScrollContainerView: UIView {
 
     private var views = [UIView]()
-
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
@@ -67,3 +66,4 @@ final class ScrollContainerView: UIView {
         }
     }
 }
+

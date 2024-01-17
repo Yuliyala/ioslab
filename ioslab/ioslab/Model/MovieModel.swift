@@ -17,7 +17,7 @@ struct Movie {
 }
 
 enum Category: String {
-    case popular = "Popular"
+    case popular = "What's Popular"
     case trending = "Trending"
     case newMovies = "New"
 }
