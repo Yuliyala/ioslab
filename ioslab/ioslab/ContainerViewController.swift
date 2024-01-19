@@ -33,7 +33,7 @@ class ContainerViewController: UIViewController {
         let categoryController = CategoryViewController()
         categoryController.titleText = category.rawValue 
         controllers.append(categoryController)
-        scrollContainerView.addViewToContainer(categoryController.view, height: 350)
+        scrollContainerView.addViewToContainer(categoryController.view, height: 370)
         addChild(categoryController)
     }
 }
