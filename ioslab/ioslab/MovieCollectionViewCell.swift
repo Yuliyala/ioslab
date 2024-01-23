@@ -35,6 +35,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     private let releaseDateLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 12)
         return label
@@ -42,6 +43,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     private let actionButton: UIButton = {
         let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("•••", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 10, weight: .bold)
         button.setTitleColor(UIColor.black, for: .normal)

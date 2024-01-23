@@ -16,13 +16,22 @@ struct Movie {
     let releaseDate: String
 }
 
-enum Category: String {
-    case popular = "What's Popular"
-    case trending = "Trending"
-    case newMovies = "New"
+enum MainScreenMovieCategory: String {
+    case popular
+    case trending
+    case newMovies 
+
+    var title: String {
+        switch self {
+        case .popular:
+            return "What's Popular"
+        case .trending:
+            return "Trending"
+        case .newMovies:
+            return "New"
+        }
+    }
 }
-
-
 
 
 
