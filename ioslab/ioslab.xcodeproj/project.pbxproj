@@ -69,6 +69,51 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		B202D7AA2B60483D00CC6FC5 /* MainMovieScreen */ = {
+			isa = PBXGroup;
+			children = (
+				B202D7AC2B60496900CC6FC5 /* Model */,
+				B202D7AD2B60497500CC6FC5 /* View */,
+				B202D7AE2B60497C00CC6FC5 /* Controller */,
+			);
+			path = MainMovieScreen;
+			sourceTree = "<group>";
+		};
+		B202D7AB2B60489100CC6FC5 /* DetailMovieScreen */ = {
+			isa = PBXGroup;
+			children = (
+				B29A07502B586F7E007DF958 /* MovieDetailViewController.swift */,
+			);
+			path = DetailMovieScreen;
+			sourceTree = "<group>";
+		};
+		B202D7AC2B60496900CC6FC5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B2458BE62B4DD63900D247B4 /* MovieModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B202D7AD2B60497500CC6FC5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B29A07552B59C7D9007DF958 /* RatingBadgeView.swift */,
+				B29CE8B92B554BF60060BA13 /* MovieCollectionViewCell.swift */,
+				B29CE8BF2B55C6EB0060BA13 /* ScrollContainerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B202D7AE2B60497C00CC6FC5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B29CE8BD2B554C720060BA13 /* ContainerViewController.swift */,
+				B29A074E2B586F4F007DF958 /* CategoryViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		B2ABECEF2B402C5400D8DE47 = {
 			isa = PBXGroup;
 			children = (
@@ -90,18 +135,13 @@
 		B2ABECFA2B402C5400D8DE47 /* ioslab */ = {
 			isa = PBXGroup;
 			children = (
+				B202D7AA2B60483D00CC6FC5 /* MainMovieScreen */,
+				B202D7AB2B60489100CC6FC5 /* DetailMovieScreen */,
 				B2ABED042B402C5700D8DE47 /* Assets.xcassets */,
 				B2ABED092B402C5700D8DE47 /* Info.plist */,
 				B2ABED062B402C5700D8DE47 /* LaunchScreen.storyboard */,
 				B29CE8B72B55361F0060BA13 /* AppDelegate.swift */,
 				B2ABECFD2B402C5400D8DE47 /* SceneDelegate.swift */,
-				B29A07502B586F7E007DF958 /* MovieDetailViewController.swift */,
-				B29A074E2B586F4F007DF958 /* CategoryViewController.swift */,
-				B29CE8BD2B554C720060BA13 /* ContainerViewController.swift */,
-				B29CE8BF2B55C6EB0060BA13 /* ScrollContainerView.swift */,
-				B29CE8B92B554BF60060BA13 /* MovieCollectionViewCell.swift */,
-				B2458BE62B4DD63900D247B4 /* MovieModel.swift */,
-				B29A07552B59C7D9007DF958 /* RatingBadgeView.swift */,
 			);
 			path = ioslab;
 			sourceTree = "<group>";
