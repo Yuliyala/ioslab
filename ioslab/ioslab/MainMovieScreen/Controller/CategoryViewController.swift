@@ -104,16 +104,16 @@ extension CategoryViewController: UICollectionViewDelegateFlowLayout {
 extension CategoryViewController {
     var mockMovies: [Movie] {
         return [
-            Movie(albumImageUrl: "https://picsum.photos/200/300?1", rating: 4.5, title: "Movie 1", releaseDate: "2022-01-15"),
-            Movie(albumImageUrl: "https://picsum.photos/200/300?2", rating: 4.5, title: "Movie 2", releaseDate: "2022-01-15"),
-            Movie(albumImageUrl: "https://picsum.photos/200/300?3", rating: 4.5, title: "Movie 3", releaseDate: "2022-01-15"),
-            Movie(albumImageUrl: "https://picsum.photos/200/300?4", rating: 4.5, title: "Movie 4", releaseDate: "2022-01-15"),
-            Movie(albumImageUrl: "https://picsum.photos/200/300?5", rating: 4.5, title: "Movie 5", releaseDate: "2022-01-15"),
-            Movie(albumImageUrl: "https://picsum.photos/200/300?6", rating: 4.5, title: "Movie 6", releaseDate: "2022-01-15"),
-            Movie(albumImageUrl: "https://picsum.photos/200/300?7", rating: 4.5, title: "Movie 7", releaseDate: "2022-01-15"),
-            Movie(albumImageUrl: "https://picsum.photos/200/300?8", rating: 4.5, title: "Movie 8", releaseDate: "2022-01-15"),
-            Movie(albumImageUrl: "https://picsum.photos/200/300?9", rating: 7, title: "Movie 7", releaseDate: "2022-01-15"),
-            Movie(albumImageUrl: "https://picsum.photos/200/300?10", rating: 6, title: "Movie 8", releaseDate: "2022-01-15")
+            Movie(albumImageUrl: "https://picsum.photos/200/300?1", rating: 25, title: "Movie 1", releaseDate: "2022-01-15"),
+            Movie(albumImageUrl: "https://picsum.photos/200/300?2", rating: 50, title: "Movie 2", releaseDate: "2022-01-15"),
+            Movie(albumImageUrl: "https://picsum.photos/200/300?3", rating: 90, title: "Movie 3", releaseDate: "2022-01-15"),
+            Movie(albumImageUrl: "https://picsum.photos/200/300?4", rating: 65, title: "Movie 4", releaseDate: "2022-01-15"),
+            Movie(albumImageUrl: "https://picsum.photos/200/300?5", rating: 25, title: "Movie 5", releaseDate: "2022-01-15"),
+            Movie(albumImageUrl: "https://picsum.photos/200/300?6", rating: 50, title: "Movie 6", releaseDate: "2022-01-15"),
+            Movie(albumImageUrl: "https://picsum.photos/200/300?7", rating: 90, title: "Movie 7", releaseDate: "2022-01-15"),
+            Movie(albumImageUrl: "https://picsum.photos/200/300?8", rating: 86, title: "Movie 8", releaseDate: "2022-01-15"),
+            Movie(albumImageUrl: "https://picsum.photos/200/300?9", rating: 45, title: "Movie 7", releaseDate: "2022-01-15"),
+            Movie(albumImageUrl: "https://picsum.photos/200/300?10", rating: 10, title: "Movie 8", releaseDate: "2022-01-15")
         ]
     }
 }
