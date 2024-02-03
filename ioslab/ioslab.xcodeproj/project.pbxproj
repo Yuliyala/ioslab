@@ -108,8 +108,8 @@
 		B202D7AE2B60497C00CC6FC5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B29CE8BD2B554C720060BA13 /* ContainerViewController.swift */,
 				B29A074E2B586F4F007DF958 /* CategoryViewController.swift */,
+				B29CE8BD2B554C720060BA13 /* ContainerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

@@ -94,10 +94,10 @@ extension CategoryViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = view.frame.width / 2.5
-        let height = collectionView.frame.height
-        return CGSize(width: width, height: height)
-    }
+         let cellWidth: CGFloat = 170
+         let cellHeight: CGFloat = 300
+         return CGSize(width: cellWidth, height: cellHeight)
+     }
 }
 
 // MARK: - MockDataExtension
