@@ -31,7 +31,7 @@ class ContainerViewController: UIViewController {
         let categoryController = CategoryViewController(category: category)
         categoryController.title = category.title
         controllers.append(categoryController)
-        rootView.addViewToContainer(categoryController.view, height: 370)
+        rootView.addViewToContainer(categoryController.view)
         addChild(categoryController)
     }
 }

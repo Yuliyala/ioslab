@@ -57,15 +57,9 @@ final class ScrollContainerView: UIView {
         }
     }
 
-    func addViewToContainer(_ view: UIView, height: CGFloat?) {
+    func addViewToContainer(_ view: UIView) {
         views.append(view)
-
         stackView.addArrangedSubview(view)
-        if let height = height {
-            view.snp.makeConstraints { make in
-                make.height.equalTo(height)
-            }
-        }
     }
 }
 

@@ -56,16 +56,17 @@ final class CategoryViewController: UIViewController {
     }
 
     private func setupConstraints() {
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
-            make.leading.trailing.equalToSuperview().inset(16)
-        }
+          titleLabel.snp.makeConstraints { make in
+              make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+              make.leading.trailing.equalToSuperview().inset(16)
+          }
 
-        collectionView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(20)
-            make.leading.trailing.bottom.equalToSuperview()
-        }
-    }
+          collectionView.snp.makeConstraints { make in
+              make.top.equalTo(titleLabel.snp.bottom).offset(20)
+              make.leading.trailing.bottom.equalToSuperview()
+              make.height.equalTo(300)
+          }
+      }
 }
 
 // MARK: - UICollectionViewDataSource
