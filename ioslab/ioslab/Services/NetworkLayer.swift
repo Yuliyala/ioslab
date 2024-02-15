@@ -46,18 +46,6 @@ final class NetworkLayer {
                 case .failure(let error):
                     completion(.failure(error))
                 }
-        }
+            }
     }
-    
-//    func fetchTopRatedMovies(completion: @escaping (Result<Movie, Error>) -> Void) {
-//        fetchData(from: .trendingURLString, completion: completion)
-//    }
-//    
-//    func fetchPopularMovies(completion: @escaping (Result<Movie, Error>) -> Void) {
-//        fetchData(from: .popularURLString, completion: completion)
-//    }
-//    
-//    func fetchNowPlayingMovies(completion: @escaping (Result<Movie, Error>) -> Void) {
-//        fetchData(from: .newURLString, completion: completion)
-//    }
 }

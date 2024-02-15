@@ -34,4 +34,15 @@ class CategoryMovieController {
         }
     }
     
+    func fetchTopRatedMovies( completion: @escaping (Result<[MovieResult], Error>) -> Void) {
+        apiService.fetchData(from: RequestType.newURLString) { result in
+            switch result {
+            case.success(let data):
+                completion(.success(data.results ?? []))
+            case.failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
 }

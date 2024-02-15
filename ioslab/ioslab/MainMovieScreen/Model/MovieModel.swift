@@ -31,7 +31,7 @@ enum MainScreenMovieCategory: String {
     case popular
     case trending
     case newMovies
-
+    
     var title: String {
         switch self {
         case .popular:
@@ -43,6 +43,3 @@ enum MainScreenMovieCategory: String {
         }
     }
 }
-
-
-

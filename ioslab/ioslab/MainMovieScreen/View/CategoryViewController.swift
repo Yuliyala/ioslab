@@ -5,12 +5,10 @@
 //  Created by Yuliya Lapenak on 1/17/24.
 //
 
-
 import UIKit
 import SnapKit
-import Alamofire
 
-final class CategoryViewController: UIViewController { 
+final class CategoryViewController: UIViewController {
     var movies: [MovieResult] = []
     private var category: MainScreenMovieCategory!
     var controller = CategoryMovieController()
@@ -42,16 +40,33 @@ final class CategoryViewController: UIViewController {
     }
 
     func loadMovies() {
-        controller.fetchPopularMovies { [weak self] result in
-            switch result {
-            case.success(let data):
-                print(data)
-                self?.movies.append(contentsOf: data)
-                self?.collectionView.reloadData()
-            case.failure(let error):
-                print(error)}
+        switch category {
+        case .popular:
+            controller.fetchPopularMovies { [weak self] result in
+                self?.handleMovieResult(result)
+            }
+        case .trending:
+            controller.fetchTrendingMovies { [weak self] result in
+                self?.handleMovieResult(result)
+            }
+        case .newMovies:
+            controller.fetchTopRatedMovies { [weak self] result in
+                self?.handleMovieResult(result)
+            }
+        case .none:
+            break
+        
         }
+    }
 
+    private func handleMovieResult(_ result: Result<[MovieResult], Error>) {
+        switch result {
+        case .success(let data):
+            movies.append(contentsOf: data)
+            collectionView.reloadData()
+        case .failure(let error):
+            print("Error fetching movies: \(error)")
+        }
     }
     
     private func setupUIElements() {

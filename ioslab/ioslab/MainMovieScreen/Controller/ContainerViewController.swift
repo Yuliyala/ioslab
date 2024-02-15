@@ -6,12 +6,10 @@
 //
 
 import UIKit
-import SnapKit
 
 class ContainerViewController: UIViewController {
 
     private var rootView: ScrollContainerView!
-
     private var controllers: [UIViewController] = []
 
     override func loadView() {
@@ -33,5 +31,6 @@ class ContainerViewController: UIViewController {
         controllers.append(categoryController)
         rootView.addViewToContainer(categoryController.view)
         addChild(categoryController)
+        categoryController.loadMovies()
     }
 }
