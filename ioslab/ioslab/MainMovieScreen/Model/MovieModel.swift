@@ -6,20 +6,31 @@
 //
 
 
-import UIKit
+import Foundation
 
-// MARK: - Movie Model
-struct Movie {
-    let albumImageUrl: String
-    let rating: Double
-    let title: String
-    let releaseDate: String
+struct Movie: Decodable {
+    let results: [MovieResult]?
+}
+
+struct MovieResult: Decodable {
+    let id: Int?
+    let posterPath: String?
+    let overview, releaseDate, title: String?
+    let voteAverage: Double?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case posterPath = "poster_path"
+        case overview, title
+        case releaseDate = "release_date"
+        case voteAverage = "vote_average"
+    }
 }
 
 enum MainScreenMovieCategory: String {
     case popular
     case trending
-    case newMovies 
+    case newMovies
 
     var title: String {
         switch self {

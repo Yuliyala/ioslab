@@ -64,12 +64,12 @@ class MovieCollectionViewCell: UICollectionViewCell {
         setupViews()
     }
     
-    func configure(with movie: Movie) {
-        if let imageUrl = URL(string: movie.albumImageUrl) {
+    func configure(with movie: MovieResult) {
+        if let imageUrl = URL(string: movie.posterPath ?? "") {
             albumImageView.kf.setImage(with: imageUrl)
+            print(imageUrl)
         }
-        
-        let roundedRating = Int(round(movie.rating))
+        let roundedRating = Int(movie.voteAverage ?? 1)
         ratingBadge.configure(with: roundedRating)
         titleLabel.text = movie.title
         releaseDateLabel.text = movie.releaseDate

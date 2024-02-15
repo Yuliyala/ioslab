@@ -6,6 +6,7 @@ target 'ioslab' do
   use_frameworks!
   pod 'SnapKit'
   pod 'Kingfisher'
+  pod 'Alamofire'
 
   # Pods for ioslab
 

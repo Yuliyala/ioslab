@@ -10,9 +10,9 @@ import SnapKit
 
 class MovieDetailViewController: UIViewController {
 
-    private let movie: Movie
+    private let movie: MovieResult
 
-    init(movie: Movie) {
+    init(movie: MovieResult) {
         self.movie = movie
         super.init(nibName: nil, bundle: nil)
     }
