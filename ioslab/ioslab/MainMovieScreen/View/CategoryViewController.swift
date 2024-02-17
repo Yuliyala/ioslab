@@ -11,7 +11,7 @@ import SnapKit
 final class CategoryViewController: UIViewController {
     var movies: [MovieResult] = []
     private var category: MainScreenMovieCategory!
-    var controller = CategoryMovieController()
+    var controller = MovieCategoryController()
 
     private var titleLabel: UILabel = {
         let label = UILabel()
@@ -41,15 +41,15 @@ final class CategoryViewController: UIViewController {
 
     func loadMovies() {
         switch category {
+        case .nowPlaying:
+            controller.fetchNowPlayingMovies { [weak self] result in
+                self?.handleMovieResult(result)
+            }
         case .popular:
             controller.fetchPopularMovies { [weak self] result in
                 self?.handleMovieResult(result)
             }
-        case .trending:
-            controller.fetchTrendingMovies { [weak self] result in
-                self?.handleMovieResult(result)
-            }
-        case .newMovies:
+        case .topRated:
             controller.fetchTopRatedMovies { [weak self] result in
                 self?.handleMovieResult(result)
             }

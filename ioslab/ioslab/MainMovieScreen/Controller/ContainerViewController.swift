@@ -20,9 +20,10 @@ class ContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        addCategoryController(for: .nowPlaying)
+        addCategoryController(for: .topRated)
         addCategoryController(for: .popular)
-        addCategoryController(for: .trending)
-        addCategoryController(for: .newMovies)
+      
     }
 
     private func addCategoryController(for category: MainScreenMovieCategory) {

@@ -5,8 +5,6 @@
 //  Created by Yuliya Lapenak on 1/18/24.
 //
 
-
-
 import UIKit
 
 class RatingBadgeView: UIView {
