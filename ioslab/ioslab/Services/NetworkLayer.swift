@@ -14,11 +14,6 @@ enum NetworkLayerError: Error {
     case networkError(AFError)
 }
 
-struct NetworkConfig {
-    static let apiKey = "149ee263cc6d46569ed4b2f244a2f336"
-    static let basicURLString = "https://api.themoviedb.org/"
-}
-
 enum RequestType: String {
     case nowPlayingURLString = "3/movie/now_playing"
     case popularURLString = "3/movie/popular"
