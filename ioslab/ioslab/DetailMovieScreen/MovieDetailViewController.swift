@@ -13,6 +13,7 @@ class MovieDetailViewController: UIViewController {
     private let movie: MovieResult
 
     init(movie: MovieResult) {
+
         self.movie = movie
         super.init(nibName: nil, bundle: nil)
     }
