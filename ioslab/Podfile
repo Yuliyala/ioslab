@@ -4,10 +4,10 @@
 target 'ioslab' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  pod 'SnapKit'
-  pod 'Kingfisher'
-  pod 'Alamofire'
 
   # Pods for ioslab
 
+pod 'SnapKit'
+pod 'Kingfisher'
+pod 'Alamofire'
 end
