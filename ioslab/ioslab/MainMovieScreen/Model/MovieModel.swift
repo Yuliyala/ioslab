@@ -6,6 +6,7 @@
 //
 
 
+
 import Foundation
 
 struct Movie: Decodable {
@@ -25,13 +26,16 @@ struct MovieResult: Decodable {
         case releaseDate = "release_date"
         case voteAverage = "vote_average"
     }
+
 }
 
 enum MainScreenMovieCategory: String {
     case popular
+
     case topRated
     case nowPlaying
     
+
     var title: String {
         switch self {
         case .popular:
@@ -43,3 +47,4 @@ enum MainScreenMovieCategory: String {
         }
     }
 }
+

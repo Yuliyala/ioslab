@@ -5,6 +5,8 @@
 //  Created by Yuliya Lapenak on 1/18/24.
 //
 
+
+
 import UIKit
 
 class RatingBadgeView: UIView {
@@ -35,9 +37,11 @@ class RatingBadgeView: UIView {
     func configure(with rating: Int) {
         badgeLabel.text = "\(rating)"
         
+
         if rating < 3 {
             badgeLabel.layer.borderColor = UIColor.red.cgColor
         } else if rating < 7 {
+
             badgeLabel.layer.borderColor = UIColor.orange.cgColor
         } else {
             badgeLabel.layer.borderColor = UIColor.green.cgColor

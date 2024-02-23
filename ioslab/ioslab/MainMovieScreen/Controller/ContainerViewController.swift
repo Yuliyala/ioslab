@@ -7,9 +7,13 @@
 
 import UIKit
 
+
+
 class ContainerViewController: UIViewController {
 
     private var rootView: ScrollContainerView!
+
+
     private var controllers: [UIViewController] = []
 
     override func loadView() {
@@ -20,10 +24,12 @@ class ContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+
         addCategoryController(for: .nowPlaying)
         addCategoryController(for: .topRated)
         addCategoryController(for: .popular)
       
+
     }
 
     private func addCategoryController(for category: MainScreenMovieCategory) {
@@ -32,6 +38,8 @@ class ContainerViewController: UIViewController {
         controllers.append(categoryController)
         rootView.addViewToContainer(categoryController.view)
         addChild(categoryController)
+
         categoryController.loadMovies()
+
     }
 }
