@@ -2,7 +2,7 @@
 //  NetworkConfig.swift
 //  ioslab
 //
-//  Created by Yuliya Lapenak on 2/17/24.
+//  Created by Yuliya Lapenak on 3/3/24.
 //
 
 import Foundation

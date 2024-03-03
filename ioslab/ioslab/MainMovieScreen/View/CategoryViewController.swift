@@ -7,11 +7,12 @@
 
 import UIKit
 import SnapKit
+import Alamofire
 
 final class CategoryViewController: UIViewController {
     var movies: [MovieResult] = []
     private var category: MainScreenMovieCategory!
-    var controller = MovieCategoryController()
+    var movieService = MovieService()
 
     private var titleLabel: UILabel = {
         let label = UILabel()
@@ -40,35 +41,33 @@ final class CategoryViewController: UIViewController {
     }
 
     func loadMovies() {
-        switch category {
-        case .nowPlaying:
-            controller.fetchNowPlayingMovies { [weak self] result in
-                self?.handleMovieResult(result)
-            }
-        case .popular:
-            controller.fetchPopularMovies { [weak self] result in
-                self?.handleMovieResult(result)
-            }
-        case .topRated:
-            controller.fetchTopRatedMovies { [weak self] result in
-                self?.handleMovieResult(result)
-            }
-        case .none:
-            break
-        
+        guard let category = category else {
+            return
         }
-    }
-
-    private func handleMovieResult(_ result: Result<[MovieResult], Error>) {
+        movieService.fetchMovies(for: RequestType(rawValue: category.rawValue) ?? .nowPlayingURLString) { [weak self] result in
+              self?.handleMovieResult(result)
+          }
+      }
+        
+    private func handleMovieResult(_ result: Result<[MovieResult], NetworkLayerError>) {
         switch result {
         case .success(let data):
             movies.append(contentsOf: data)
             collectionView.reloadData()
         case .failure(let error):
-            print("Error fetching movies: \(error)")
+            switch error {
+            case .networkError(let afError):
+                if case let AFError.responseValidationFailed(reason: .unacceptableStatusCode(code)) = afError {
+                    print("HTTP Status Code: \(code)")
+                }
+                print("Network Error: \(afError)")
+            case .wrongURL:
+                print("Wrong URL Error")
+            case .decodingError(let errorMessage):
+                print("Decoding Error: \(errorMessage)")
+            }
         }
     }
-    
     private func setupUIElements() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
