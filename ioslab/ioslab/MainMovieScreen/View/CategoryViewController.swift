@@ -12,7 +12,7 @@ import Alamofire
 final class CategoryViewController: UIViewController {
     var movies: [MovieResult] = []
     private var category: MainScreenMovieCategory!
-    var movieService = MovieService()
+    var movieService = MovieApiService()
 
     private var titleLabel: UILabel = {
         let label = UILabel()
@@ -44,10 +44,10 @@ final class CategoryViewController: UIViewController {
         guard let category = category else {
             return
         }
-        movieService.fetchMovies(for: RequestType(rawValue: category.rawValue) ?? .nowPlayingURLString) { [weak self] result in
-              self?.handleMovieResult(result)
-          }
-      }
+        movieService.fetchMoviesFromAPI(for: RequestType(rawValue: category.rawValue) ?? .nowPlayingURLString) { [weak self] result in
+            self?.handleMovieResult(result)
+        }
+    }
         
     private func handleMovieResult(_ result: Result<[MovieResult], NetworkLayerError>) {
         switch result {
@@ -56,18 +56,24 @@ final class CategoryViewController: UIViewController {
             collectionView.reloadData()
         case .failure(let error):
             switch error {
-            case .networkError(let afError):
-                if case let AFError.responseValidationFailed(reason: .unacceptableStatusCode(code)) = afError {
-                    print("HTTP Status Code: \(code)")
+            case .networkError(let httpStatus):
+                switch httpStatus {
+                case .unknown:
+                    print("HTTP Status Code: \(httpStatus.rawValue)")
+                default:
+                    print("Network Error: \(httpStatus.rawValue)")
                 }
-                print("Network Error: \(afError)")
-            case .wrongURL:
+            case .decodingError:
+                print("Decoding Error")
+            case .urlCannotBeFormed:
                 print("Wrong URL Error")
-            case .decodingError(let errorMessage):
-                print("Decoding Error: \(errorMessage)")
+            case .noData:
+                print("No Data Error")
             }
         }
     }
+
+    
     private func setupUIElements() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -87,15 +93,15 @@ final class CategoryViewController: UIViewController {
     }
 
     private func setupConstraints() {
-          titleLabel.snp.makeConstraints { make in
-              make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-              make.leading.trailing.equalToSuperview().inset(16)
-          }
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
 
-          collectionView.snp.makeConstraints { make in
-              make.top.equalTo(titleLabel.snp.bottom).offset(20)
-              make.leading.trailing.bottom.equalToSuperview()
-              make.height.equalTo(300)
-          }
-      }
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(300)
+        }
+    }
 }

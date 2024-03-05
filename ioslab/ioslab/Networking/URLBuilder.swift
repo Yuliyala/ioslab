@@ -8,14 +8,24 @@
 import Foundation
 
 struct URLBuilder {
-    static func buildURL(requestType: RequestType) throws -> URL {
-        guard let urlString = "\(NetworkConfig.basicURLString)\(requestType.rawValue)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-            let url = URL(string: urlString) else {
-                throw NetworkLayerError.wrongURL
-        
-        }
-        return url
-       
+    let networkConfig: NetworkConfig
+
+    init(networkConfig: NetworkConfig) {
+        self.networkConfig = networkConfig
     }
- 
+
+    func buildURL(request: HTTPRequest) throws -> URL {
+        let urlString = "\(networkConfig.basicURLString)\(request.path.path)"
+        guard var urlComponents = URLComponents(string: urlString) else {
+            throw NetworkLayerError.urlCannotBeFormed
+        }
+        let apiKeyItem = URLQueryItem(name: "api_key", value: networkConfig.apiKey)
+        urlComponents.queryItems = [apiKeyItem] + request.queryParameters
+
+        guard let url = urlComponents.url else {
+            throw NetworkLayerError.urlCannotBeFormed
+        }
+
+        return url
+    }
 }

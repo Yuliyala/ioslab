@@ -9,7 +9,9 @@ import Foundation
 import Alamofire
 
 enum NetworkLayerError: Error {
-    case wrongURL
-    case decodingError(String)
-    case networkError(AFError)
+    case urlCannotBeFormed
+    case networkError(HTTPStatus)
+    case decodingError
+    case noData
 }
+

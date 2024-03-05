@@ -8,25 +8,32 @@
 import Foundation
 import Alamofire
 
-
 class ApiClient {
-    static func fetchData(requestType: RequestType, completion: @escaping (Result<Data, NetworkLayerError>) -> Void) {
+    var networkConfig: NetworkConfig
+
+    init(networkConfig: NetworkConfig) {
+        self.networkConfig = networkConfig
+    }
+
+    func fetchData(request: HTTPRequest, completion: @escaping (Result<Data, NetworkLayerError>) -> Void) {
         do {
-            let url = try URLBuilder.buildURL(requestType: requestType)
+            let urlBuilder = URLBuilder(networkConfig: networkConfig)
+            let url = try urlBuilder.buildURL(request: request)
+
             HTTPClient.performRequest(url: url) { result in
                 switch result {
                 case .success(let data):
                     completion(.success(data))
                 case .failure(let error):
-                    handleNetworkError(error, completion: completion)
+                    self.handleNetworkError(error, completion: completion)
                 }
             }
         } catch {
-            completion(.failure(NetworkLayerError.decodingError("Failed to build URL")))
+            completion(.failure(NetworkLayerError.decodingError))
         }
     }
 
-    private static func handleNetworkError(_ error: NetworkLayerError, completion: @escaping (Result<Data, NetworkLayerError>) -> Void) {
+    private func handleNetworkError(_ error: NetworkLayerError, completion: @escaping (Result<Data, NetworkLayerError>) -> Void) {
         completion(.failure(error))
     }
 }
