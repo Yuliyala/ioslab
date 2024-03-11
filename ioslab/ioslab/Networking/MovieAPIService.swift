@@ -36,7 +36,7 @@ class MovieApiService {
     private func handleAPICallResult(apiCallResult: Result<Data, NetworkLayerError>, completion: @escaping (Result<[MovieResult], NetworkLayerError>) -> Void) {
         switch apiCallResult {
         case .success(let data):
-            print("Received data: \(String(data: data, encoding: .utf8) ?? "")")
+//            print("Received data: \(String(data: data, encoding: .utf8) ?? "")")
             
             do {
                 let decoder = JSONDecoder()

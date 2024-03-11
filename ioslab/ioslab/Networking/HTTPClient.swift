@@ -5,7 +5,12 @@
 //  Created by Yuliya Lapenak on 3/3/24.
 //
 
+import Foundation
 import Alamofire
+
+protocol URLConvertible {
+    func asURL() throws -> URL
+}
 
 extension URL: URLConvertible {
     public func asURL() throws -> URL {
@@ -14,7 +19,7 @@ extension URL: URLConvertible {
 }
 
 struct HTTPClient {
-    static func performRequest(url: URLConvertible, completion: @escaping (Result<Data, NetworkLayerError>) -> Void) {
+    func performRequest(url: URL, completion: @escaping (Result<Data, NetworkLayerError>) -> Void) {
         AF.request(url).validate().responseData { response in
             switch response.result {
             case .success(let data):

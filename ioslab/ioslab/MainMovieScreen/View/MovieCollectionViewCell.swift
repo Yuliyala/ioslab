@@ -70,6 +70,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
             print(imageUrl)
         }
         let roundedRating = Int(movie.voteAverage ?? 1)
+        print(roundedRating)
         ratingBadge.configure(with: roundedRating)
         titleLabel.text = movie.title
         releaseDateLabel.text = movie.releaseDate

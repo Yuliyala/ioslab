@@ -20,7 +20,8 @@ class ApiClient {
             let urlBuilder = URLBuilder(networkConfig: networkConfig)
             let url = try urlBuilder.buildURL(request: request)
 
-            HTTPClient.performRequest(url: url) { result in
+            let httpClient = HTTPClient()
+            httpClient.performRequest(url: url) { result in
                 switch result {
                 case .success(let data):
                     completion(.success(data))
