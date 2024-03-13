@@ -15,14 +15,14 @@ class MovieApiService {
     lazy var apiClient: ApiClient = {
         return ApiClient(networkConfig: self.networkConfig)
     }()
-    func fetchMoviesFromAPI(for category: RequestType, completion: @escaping (Result<[MovieResult], NetworkLayerError>) -> Void) {
+    func fetchMoviesFromAPI(for category: RequestType, completion: @escaping (Result<Movie, NetworkLayerError>) -> Void) {
         let request = HTTPRequest(method: .get, baseUrl: networkConfig.basicURLString, path: RequestType.nowPlayingURLString as UrlPathConvertible, queryParameters: [])
         
         do {
             let urlBuilder = URLBuilder(networkConfig: networkConfig)
             let url = try urlBuilder.buildURL(request: request)
             
-            // Print 
+            // Print
             print("API Request URL: \(url)")
             
             apiClient.fetchData(request: request) { apiCallResult in
@@ -33,23 +33,15 @@ class MovieApiService {
         }
     }
     
-    private func handleAPICallResult(apiCallResult: Result<Data, NetworkLayerError>, completion: @escaping (Result<[MovieResult], NetworkLayerError>) -> Void) {
+    private func handleAPICallResult(apiCallResult: Result<Data, NetworkLayerError>, completion: @escaping (Result<Movie, NetworkLayerError>) -> Void) {
         switch apiCallResult {
         case .success(let data):
-//            print("Received data: \(String(data: data, encoding: .utf8) ?? "")")
+            //            print("Received data: \(String(data: data, encoding: .utf8) ?? "")")
             
             do {
                 let decoder = JSONDecoder()
-                if let moviesArray = try? decoder.decode([MovieResult].self, from: data) {
+                let moviesArray = try decoder.decode(Movie.self, from: data)
                     completion(.success(moviesArray))
-                } else if let movieObject = try? decoder.decode(MovieResult.self, from: data) {
-                    completion(.success([movieObject]))
-                } else {
-                    throw DecodingError.typeMismatch([MovieResult].self, DecodingError.Context(codingPath: [], debugDescription: "Expected to decode Array<MovieResult> or a single MovieResult object, but found neither.", underlyingError: nil))
-                }
-            } catch let error as DecodingError {
-                print("Decoding Error: \(error)")
-                completion(.failure(.decodingError))
             } catch {
                 print("An unexpected error occurred: \(error)")
                 completion(.failure(.decodingError))

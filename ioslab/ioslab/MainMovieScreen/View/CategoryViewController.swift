@@ -5,6 +5,7 @@
 //  Created by Yuliya Lapenak on 1/17/24.
 //
 
+
 import UIKit
 import SnapKit
 import Alamofire
@@ -13,7 +14,7 @@ final class CategoryViewController: UIViewController {
     var movies: [MovieResult] = []
     private var category: MainScreenMovieCategory!
     var movieService = MovieApiService()
-
+    
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -22,16 +23,16 @@ final class CategoryViewController: UIViewController {
     }()
     
     private var collectionView: UICollectionView!
-
+    
     init(category: MainScreenMovieCategory) {
         self.category = category
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("init(coder:)has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -39,7 +40,7 @@ final class CategoryViewController: UIViewController {
         setupConstraints()
         loadMovies()
     }
-
+    
     func loadMovies() {
         guard let category = category else {
             return
@@ -48,11 +49,11 @@ final class CategoryViewController: UIViewController {
             self?.handleMovieResult(result)
         }
     }
-        
-    private func handleMovieResult(_ result: Result<[MovieResult], NetworkLayerError>) {
+    
+    private func handleMovieResult(_ result: Result<Movie, NetworkLayerError>) {
         switch result {
         case .success(let data):
-            movies.append(contentsOf: data)
+            self.movies = data.results ?? []
             collectionView.reloadData()
         case .failure(let error):
             switch error {
@@ -72,7 +73,7 @@ final class CategoryViewController: UIViewController {
             }
         }
     }
-
+    
     
     private func setupUIElements() {
         let layout = UICollectionViewFlowLayout()
@@ -91,13 +92,13 @@ final class CategoryViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(collectionView)
     }
-
+    
     private func setupConstraints() {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.leading.trailing.equalToSuperview().inset(16)
         }
-
+        
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.leading.trailing.bottom.equalToSuperview()
