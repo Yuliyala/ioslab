@@ -10,31 +10,34 @@ import Alamofire
 
 class ApiClient {
     var networkConfig: NetworkConfig
-
+    
     init(networkConfig: NetworkConfig) {
         self.networkConfig = networkConfig
     }
-
+    
     func fetchData(request: HTTPRequest, completion: @escaping (Result<Data, NetworkLayerError>) -> Void) {
         do {
             let urlBuilder = URLBuilder(networkConfig: networkConfig)
             let url = try urlBuilder.buildURL(request: request)
-
-            let httpClient = HTTPClient()
-            httpClient.performRequest(url: url) { result in
-                switch result {
+            AF.request(url).validate().responseData { response in
+                switch response.result {
                 case .success(let data):
                     completion(.success(data))
                 case .failure(let error):
-                    self.handleNetworkError(error, completion: completion)
+                    let httpStatus: HTTPStatus
+                    
+                    if let afError = error as? AFError,
+                       case let AFError.responseValidationFailed(reason: .unacceptableStatusCode(code)) = afError {
+                        httpStatus = HTTPStatus(rawValue: code) ?? .unknown
+                    } else {
+                        httpStatus = .unknown
+                    }
+                    
+                    completion(.failure(NetworkLayerError.networkError(httpStatus)))
                 }
             }
         } catch {
-            completion(.failure(NetworkLayerError.decodingError))
+            completion(.failure(NetworkLayerError.urlCannotBeFormed))
         }
-    }
-
-    private func handleNetworkError(_ error: NetworkLayerError, completion: @escaping (Result<Data, NetworkLayerError>) -> Void) {
-        completion(.failure(error))
     }
 }

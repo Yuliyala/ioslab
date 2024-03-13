@@ -8,40 +8,28 @@
 import Foundation
 import Alamofire
 
-
 class MovieApiService {
     let networkConfig = NetworkConfig(apiKey: "149ee263cc6d46569ed4b2f244a2f336", basicURLString: "https://api.themoviedb.org/")
     
     lazy var apiClient: ApiClient = {
         return ApiClient(networkConfig: self.networkConfig)
     }()
+    
     func fetchMoviesFromAPI(for category: RequestType, completion: @escaping (Result<Movie, NetworkLayerError>) -> Void) {
-        let request = HTTPRequest(method: .get, baseUrl: networkConfig.basicURLString, path: RequestType.nowPlayingURLString as UrlPathConvertible, queryParameters: [])
+        let request = HTTPRequest(method: .get, baseUrl: networkConfig.basicURLString, path: category, queryParameters: [])
         
-        do {
-            let urlBuilder = URLBuilder(networkConfig: networkConfig)
-            let url = try urlBuilder.buildURL(request: request)
-            
-            // Print
-            print("API Request URL: \(url)")
-            
-            apiClient.fetchData(request: request) { apiCallResult in
-                self.handleAPICallResult(apiCallResult: apiCallResult, completion: completion)
-            }
-        } catch {
-            completion(.failure(NetworkLayerError.urlCannotBeFormed))
+        apiClient.fetchData(request: request) { apiCallResult in
+            self.handleAPICallResult(apiCallResult: apiCallResult, completion: completion)
         }
     }
     
     private func handleAPICallResult(apiCallResult: Result<Data, NetworkLayerError>, completion: @escaping (Result<Movie, NetworkLayerError>) -> Void) {
         switch apiCallResult {
         case .success(let data):
-            //            print("Received data: \(String(data: data, encoding: .utf8) ?? "")")
-            
             do {
                 let decoder = JSONDecoder()
                 let moviesArray = try decoder.decode(Movie.self, from: data)
-                    completion(.success(moviesArray))
+                completion(.success(moviesArray))
             } catch {
                 print("An unexpected error occurred: \(error)")
                 completion(.failure(.decodingError))

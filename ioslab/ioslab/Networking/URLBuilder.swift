@@ -9,23 +9,23 @@ import Foundation
 
 struct URLBuilder {
     let networkConfig: NetworkConfig
-
+    
     init(networkConfig: NetworkConfig) {
         self.networkConfig = networkConfig
     }
-
-    func buildURL(request: HTTPRequest) throws -> URL {
+    
+    public func buildURL(request: HTTPRequest) throws -> URL {
         let urlString = "\(networkConfig.basicURLString)\(request.path.path)"
         guard var urlComponents = URLComponents(string: urlString) else {
             throw NetworkLayerError.urlCannotBeFormed
         }
         let apiKeyItem = URLQueryItem(name: "api_key", value: networkConfig.apiKey)
         urlComponents.queryItems = [apiKeyItem] + request.queryParameters
-
+        
         guard let url = urlComponents.url else {
             throw NetworkLayerError.urlCannotBeFormed
         }
-
+        
         return url
     }
 }
