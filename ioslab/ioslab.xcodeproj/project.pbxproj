@@ -25,6 +25,7 @@
 		B2B8C7062B945360001BABB3 /* NetworkLayerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B8C7052B945360001BABB3 /* NetworkLayerError.swift */; };
 		B2B8C7082B9453AD001BABB3 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B8C7072B9453AD001BABB3 /* NetworkConfig.swift */; };
 		B2B8C70C2B9456B5001BABB3 /* MovieAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B8C70B2B9456B5001BABB3 /* MovieAPIService.swift */; };
+		B2CD60552BA30F2500509446 /* ImageUrlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CD60542BA30F2500509446 /* ImageUrlService.swift */; };
 		B2E4688A2B9755F1001BA668 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E468892B9755F1001BA668 /* HTTPRequest.swift */; };
 		B2E4688D2B9757AD001BA668 /* HTTPStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E4688C2B9757AD001BA668 /* HTTPStatus.swift */; };
 		B2E4688F2B9757ED001BA668 /* HTTPMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E4688E2B9757ED001BA668 /* HTTPMethods.swift */; };
@@ -54,6 +55,7 @@
 		B2B8C7052B945360001BABB3 /* NetworkLayerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayerError.swift; sourceTree = "<group>"; };
 		B2B8C7072B9453AD001BABB3 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		B2B8C70B2B9456B5001BABB3 /* MovieAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPIService.swift; sourceTree = "<group>"; };
+		B2CD60542BA30F2500509446 /* ImageUrlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUrlService.swift; sourceTree = "<group>"; };
 		B2E468892B9755F1001BA668 /* HTTPRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequest.swift; sourceTree = "<group>"; };
 		B2E4688C2B9757AD001BA668 /* HTTPStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatus.swift; sourceTree = "<group>"; };
 		B2E4688E2B9757ED001BA668 /* HTTPMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethods.swift; sourceTree = "<group>"; };
@@ -164,10 +166,11 @@
 			isa = PBXGroup;
 			children = (
 				B2E4688B2B97578F001BA668 /* HTTPModels */,
-				B2B8C7022B94532D001BABB3 /* Models */,
 				B2B8C6FE2B945215001BABB3 /* APIClient.swift */,
 				B2B8C6FA2B9451C2001BABB3 /* URLBuilder.swift */,
 				B2B8C70B2B9456B5001BABB3 /* MovieAPIService.swift */,
+				B2CD60542BA30F2500509446 /* ImageUrlService.swift */,
+				B2B8C7022B94532D001BABB3 /* Models */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				B29A07562B59C7D9007DF958 /* RatingBadgeView.swift in Sources */,
 				B2E4688D2B9757AD001BA668 /* HTTPStatus.swift in Sources */,
 				B2E4688F2B9757ED001BA668 /* HTTPMethods.swift in Sources */,
+				B2CD60552BA30F2500509446 /* ImageUrlService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,9 @@ import SnapKit
 import Kingfisher
 
 class MovieCollectionViewCell: UICollectionViewCell {
+    
+    let imageUrlService = ImageUrlService()
+    
     private let albumImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +55,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         button.layer.masksToBounds = true
         return button
     }()
-
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,16 +68,19 @@ class MovieCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with movie: MovieResult) {
-        if let imageUrl = URL(string: movie.posterPath ?? "") {
-            albumImageView.kf.setImage(with: imageUrl)
-            print(imageUrl)
+        if let posterPath = movie.posterPath {
+            if let imageUrl = imageUrlService.imageUrl(forPath: posterPath) {
+                albumImageView.kf.setImage(with: imageUrl)
+            }
         }
         let roundedRating = Int(movie.voteAverage ?? 1)
         print(roundedRating)
         ratingBadge.configure(with: roundedRating)
         titleLabel.text = movie.title
         releaseDateLabel.text = movie.releaseDate
+        
     }
+    
     
     private func setupViews() {
         addSubview(albumImageView)
@@ -93,7 +99,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
             make.leading.equalToSuperview().offset(10)
             make.size.equalTo(45)
         }
-
+        
         actionButton.snp.makeConstraints { make in
             make.top.equalTo(albumImageView).offset(10)
             make.trailing.equalTo(albumImageView).offset(-14)
