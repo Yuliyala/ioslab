@@ -14,4 +14,3 @@ enum NetworkLayerError: Error {
     case decodingError
     case noData
 }
-

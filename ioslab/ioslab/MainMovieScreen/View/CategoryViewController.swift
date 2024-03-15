@@ -74,7 +74,6 @@ final class CategoryViewController: UIViewController {
         }
     }
     
-    
     private func setupUIElements() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal

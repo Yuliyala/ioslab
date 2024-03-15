@@ -26,7 +26,7 @@ class ApiClient {
                 case .failure(let error):
                     let httpStatus: HTTPStatus
                     
-                    if let afError = error as? AFError,
+                    if let afError = error.asAFError,
                        case let AFError.responseValidationFailed(reason: .unacceptableStatusCode(code)) = afError {
                         httpStatus = HTTPStatus(rawValue: code) ?? .unknown
                     } else {

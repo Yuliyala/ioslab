@@ -56,7 +56,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
         return button
     }()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -74,7 +73,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
             return "Unknown"
         }
         
-        dateFormatter.dateFormat = "MMM dd, yyyy" 
+        dateFormatter.dateFormat = "MMM dd, yyyy"
         return dateFormatter.string(from: date)
     }
 
@@ -91,8 +90,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    
-    
     private func setupViews() {
         addSubview(albumImageView)
         addSubview(ratingBadge)
