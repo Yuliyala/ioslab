@@ -9,14 +9,14 @@
 import Foundation
 
 struct Movie: Decodable {
-    let results: [MovieResult]?
+    let results: [MovieResult]
 }
 
 struct MovieResult: Decodable {
-    let id: Int?
-    let posterPath: String?
-    let overview, releaseDate, title: String?
-    let voteAverage: Double?
+    let id: Int
+    let posterPath: String
+    let overview, releaseDate, title: String
+    let voteAverage: Double
     
     enum CodingKeys: String, CodingKey {
         case id

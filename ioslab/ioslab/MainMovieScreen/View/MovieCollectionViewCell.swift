@@ -68,18 +68,18 @@ class MovieCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with movie: MovieResult) {
-        if let posterPath = movie.posterPath {
-            if let imageUrl = imageUrlService.imageUrl(forPath: posterPath) {
-                albumImageView.kf.setImage(with: imageUrl)
-            }
-        }
-        let roundedRating = Int(movie.voteAverage ?? 1)
+        let roundedRating = Int(movie.voteAverage)
         print(roundedRating)
         ratingBadge.configure(with: roundedRating)
         titleLabel.text = movie.title
         releaseDateLabel.text = movie.releaseDate
         
+        let posterPath = movie.posterPath
+        if let imageUrl = imageUrlService.imageUrl(forPath: posterPath) {
+            albumImageView.kf.setImage(with: imageUrl)
+        }
     }
+
     
     
     private func setupViews() {
