@@ -67,12 +67,23 @@ class MovieCollectionViewCell: UICollectionViewCell {
         setupViews()
     }
     
+    func formatDate(dateString: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        guard let date = dateFormatter.date(from: dateString) else {
+            return "Unknown"
+        }
+        
+        dateFormatter.dateFormat = "MMM dd, yyyy" 
+        return dateFormatter.string(from: date)
+    }
+
+
     func configure(with movie: MovieResult) {
         let roundedRating = Int(movie.voteAverage)
-        print(roundedRating)
         ratingBadge.configure(with: roundedRating)
         titleLabel.text = movie.title
-        releaseDateLabel.text = movie.releaseDate
+        releaseDateLabel.text = formatDate(dateString: movie.releaseDate)
         
         let posterPath = movie.posterPath
         if let imageUrl = imageUrlService.imageUrl(forPath: posterPath) {

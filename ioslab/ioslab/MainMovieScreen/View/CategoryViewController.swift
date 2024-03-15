@@ -53,7 +53,7 @@ final class CategoryViewController: UIViewController {
     private func handleMovieResult(_ result: Result<Movie, NetworkLayerError>) {
         switch result {
         case .success(let data):
-            self.movies = data.results ?? []
+            self.movies = data.results
             collectionView.reloadData()
         case .failure(let error):
             switch error {
