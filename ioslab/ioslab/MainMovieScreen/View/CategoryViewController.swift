@@ -42,38 +42,34 @@ final class CategoryViewController: UIViewController {
     }
     
     func loadMovies() {
-        guard let category = category else {
+        guard let requestType = RequestType(rawValue: category.rawValue) else {
+            print("Invalid category")
             return
         }
-        movieService.fetchMoviesFromAPI(for: RequestType(rawValue: category.rawValue) ?? .nowPlayingURLString) { [weak self] result in
-            self?.handleMovieResult(result)
-        }
-    }
-    
-    private func handleMovieResult(_ result: Result<Movie, NetworkLayerError>) {
-        switch result {
-        case .success(let data):
-            self.movies = data.results
-            collectionView.reloadData()
-        case .failure(let error):
-            switch error {
-            case .networkError(let httpStatus):
-                switch httpStatus {
-                case .unknown:
-                    print("HTTP Status Code: \(httpStatus.rawValue)")
-                default:
-                    print("Network Error: \(httpStatus.rawValue)")
-                }
-            case .decodingError:
-                print("Decoding Error")
-            case .urlCannotBeFormed:
-                print("Wrong URL Error")
-            case .noData:
-                print("No Data Error")
+        
+        movieService.fetchMoviesFromAPI(for: requestType) { [weak self] result in
+            switch result {
+            case .success(let movieResponse):
+                self?.movies = movieResponse.results
+                self?.collectionView.reloadData()
+            case .failure(let error):
+                self?.handleError(error)
             }
         }
     }
     
+    private func handleError(_ error: NetworkLayerError) {
+        switch error {
+        case .networkError(let httpStatus):
+            print("Network Error: \(httpStatus.rawValue)")
+        case .decodingError:
+            print("Decoding Error")
+        case .urlCannotBeFormed:
+            print("URL Formation Error")
+        case .noData:
+            print("No Data Error")
+        }
+    }
     private func setupUIElements() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal

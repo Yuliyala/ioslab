@@ -28,9 +28,9 @@ struct MovieResult: Decodable {
 }
 
 enum MainScreenMovieCategory: String {
-    case popular
-    case topRated
-    case nowPlaying
+    case popular = "3/movie/popular"
+    case topRated = "3/movie/top_rated"
+    case nowPlaying = "3/movie/now_playing"
     
     var title: String {
         switch self {
