@@ -17,10 +17,10 @@ class RatingBadgeView: UIView {
         label.backgroundColor = .black
         label.layer.cornerRadius = 22.5
         label.layer.masksToBounds = true
-        label.layer.borderWidth = 3
-        label.layer.borderColor = UIColor.green.cgColor
         return label
     }()
+    
+    private let borderLayer = CAShapeLayer()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,21 +34,33 @@ class RatingBadgeView: UIView {
     
     func configure(with rating: Int) {
         badgeLabel.text = "\(rating)"
-        
-        if rating < 3 {
-            badgeLabel.layer.borderColor = UIColor.red.cgColor
-        } else if rating < 7 {
-            badgeLabel.layer.borderColor = UIColor.orange.cgColor
-        } else {
-            badgeLabel.layer.borderColor = UIColor.green.cgColor
-        }
+        setNeedsLayout()
     }
     
     private func setupViews() {
         addSubview(badgeLabel)
-        
         badgeLabel.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let ratingPercentage = CGFloat(Int(badgeLabel.text ?? "") ?? 0) / 10.0
+        let endAngle = 2 * CGFloat.pi * ratingPercentage - CGFloat.pi / 2
+        
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: badgeLabel.bounds.midX, y: badgeLabel.bounds.midY),
+                                      radius: badgeLabel.bounds.width / 2,
+                                      startAngle: -CGFloat.pi / 2,
+                                      endAngle: endAngle,
+                                      clockwise: true)
+        
+        borderLayer.frame = bounds
+        borderLayer.lineWidth = 4
+        borderLayer.fillColor = UIColor.clear.cgColor
+        borderLayer.strokeColor = UIColor.green.cgColor
+        borderLayer.path = circlePath.cgPath
+        layer.addSublayer(borderLayer)
     }
 }
