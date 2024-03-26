@@ -27,19 +27,40 @@ struct MovieResult: Decodable {
     }
 }
 
-enum MainScreenMovieCategory: String {
-    case popular = "3/movie/popular"
-    case topRated = "3/movie/top_rated"
-    case nowPlaying = "3/movie/now_playing"
+struct Actor: Decodable {
+    let page: Int
+    let results: [ActorResult]
+}
+
+struct ActorResult: Decodable {
+    let adult: Bool
+    let gender: Int
+    let id: Int
+    let knownForDepartment: String
+    let name: String
+    let originalName: String
+    let popularity: Double
+    let profilePath: String?
+    let knownFor: [MovieResult]
+}
+
+
+enum MainScreenCategory: String {
+    case popularMovies = "3/movie/popular"
+    case topRatedMovies = "3/movie/top_rated"
+    case nowPlayingMovies = "3/movie/now_playing"
+    case popularActors = "3/person/popular"
     
     var title: String {
         switch self {
-        case .popular:
+        case .popularMovies:
             return "What's Popular"
-        case .topRated:
+        case .topRatedMovies:
             return "Top Rated"
-        case .nowPlaying:
+        case .nowPlayingMovies:
             return "Now Playing"
+        case .popularActors:
+            return "Popular Actors" 
         }
     }
 }
