@@ -42,5 +42,4 @@ class ContainerViewController: UIViewController {
         rootView.addViewToContainer(actorsController.view)
         addChild(actorsController)
     }
-
 }

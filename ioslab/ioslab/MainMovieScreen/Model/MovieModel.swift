@@ -51,6 +51,7 @@ struct ActorResult: Decodable {
         case knownFor = "known_for"
     }
 }
+
 struct KnownFor: Codable {
     let adult: Bool
     let backdropPath: String?
@@ -100,8 +101,6 @@ enum KnownForDepartment: String, Codable {
     case acting = "Acting"
     case writing = "Writing"
 }
-
-
 
 enum MainScreenCategory: String {
     case popularMovies = "3/movie/popular"
