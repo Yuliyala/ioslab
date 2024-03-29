@@ -17,3 +17,9 @@ public struct HTTPRequest {
     let path: UrlPathConvertible
     let queryParameters: [URLQueryItem]
 }
+
+extension String: UrlPathConvertible {
+    public var path: String {
+        return self
+    }
+}
