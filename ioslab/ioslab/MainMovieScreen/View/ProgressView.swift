@@ -22,6 +22,8 @@ class ProgressView: UIView {
     let progressLineView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.cornerRadius = 5
+        view.layer.masksToBounds = true
         return view
     }()
 
@@ -32,14 +34,15 @@ class ProgressView: UIView {
         progressLineView.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.centerY.equalToSuperview()
-            make.height.equalTo(12)
+            make.height.equalTo(8)
             make.width.equalTo(100)
         }
         
         progressLabel.snp.makeConstraints { make in
             make.leading.equalTo(progressLineView.snp.trailing).offset(8)
-            make.centerY.equalTo(progressLineView)
+            make.centerY.equalTo(progressLineView.snp.centerY)
         }
+        
     }
 
     func setProgress(progress: Double, colors: [UIColor]) {
@@ -70,7 +73,7 @@ class ProgressView: UIView {
         progressLineView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
 
         let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: width, height: 5)
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: width, height: 8)
         gradientLayer.colors = colors.map { $0.cgColor }
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)

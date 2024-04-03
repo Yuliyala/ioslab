@@ -23,6 +23,9 @@ class PopularActorsViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
+        tableView.isScrollEnabled = false 
+        tableView.layer.cornerRadius = 10 
+        tableView.layer.masksToBounds = true
         return tableView
     }()
     
@@ -37,7 +40,7 @@ class PopularActorsViewController: UIViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = 20
         return stackView
     }()
 
@@ -57,23 +60,21 @@ class PopularActorsViewController: UIViewController {
         stackView.addArrangedSubview(separatorView)
         stackView.addArrangedSubview(tableView)
         
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
         separatorView.snp.makeConstraints { make in
             make.height.equalTo(2)
             make.leading.trailing.equalToSuperview()
         }
-        stackView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
-        
-        titleLabel.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(16)
-        }
-        
         tableView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(700)
+            make.height.equalTo(UIScreen.main.bounds.height - 170)
         }
 
         tableView.delegate = self
@@ -104,7 +105,7 @@ extension PopularActorsViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActorCell", for: indexPath) as! ActorTableViewCell
         let actor = popularActors[indexPath.row]
-        let knownFor = actor.knownFor 
+        let knownFor = actor.knownFor
         cell.configure(with: actor, knownFor: knownFor, cellWidth: tableView.bounds.width)
         return cell
     }

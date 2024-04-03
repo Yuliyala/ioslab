@@ -13,11 +13,20 @@ class ActorTableViewCell: UITableViewCell {
     
     let imageUrlService = ImageUrlService()
     
+    private let containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 10
+        view.layer.masksToBounds = true
+        return view
+    }()
+    
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 40
+        imageView.layer.cornerRadius = 30
         imageView.clipsToBounds = true
         imageView.backgroundColor = .lightGray
         return imageView
@@ -44,28 +53,34 @@ class ActorTableViewCell: UITableViewCell {
     }
     
     private func setupViews() {
-        addSubview(profileImageView)
-        addSubview(nameLabel)
-        addSubview(actorProgressPopularityView)
-        addSubview(progressPopularityView)
+        addSubview(containerView)
+        
+        containerView.addSubview(profileImageView)
+        containerView.addSubview(nameLabel)
+        containerView.addSubview(actorProgressPopularityView)
+        containerView.addSubview(progressPopularityView)
+        
+        containerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2))
+        }
         
         profileImageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(8)
-            make.top.equalToSuperview().offset(8)
-            make.bottom.equalToSuperview().offset(-8)
-            make.width.equalTo(80)
+            make.leading.equalToSuperview().offset(2)
+            make.top.equalToSuperview().offset(2)
+            make.bottom.equalToSuperview().offset(-2)
+            make.width.equalTo(60)
             make.height.equalTo(profileImageView.snp.width)
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(profileImageView.snp.trailing).offset(8)
-            make.top.equalToSuperview().offset(16)
+            make.leading.equalTo(profileImageView.snp.trailing).offset(4)
+            make.top.equalToSuperview().offset(4)
             make.trailing.equalToSuperview().offset(-8)
         }
         
         progressPopularityView.snp.makeConstraints { make in
             make.leading.equalTo(nameLabel.snp.leading)
-            make.top.equalTo(nameLabel.snp.bottom).inset(-20)
+            make.top.equalTo(nameLabel.snp.bottom).inset(-10)
         }
         actorProgressPopularityView.snp.makeConstraints { make in
             make.leading.equalTo(progressPopularityView.snp.leading)
