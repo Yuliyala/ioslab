@@ -22,13 +22,22 @@ class PopularActorsViewController: UIViewController {
     private var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
         return tableView
+    }()
+    
+    private var separatorView: UIView = {
+        let separatorView = UIView()
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        separatorView.backgroundColor = .darkGray
+        return separatorView
     }()
 
     private var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.spacing = 16
         return stackView
     }()
 
@@ -37,7 +46,6 @@ class PopularActorsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupViews()
         loadActors()
     }
@@ -46,19 +54,25 @@ class PopularActorsViewController: UIViewController {
         view.addSubview(stackView)
 
         stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(separatorView)
         stackView.addArrangedSubview(tableView)
-
+        
+        separatorView.snp.makeConstraints { make in
+            make.height.equalTo(2)
+            make.leading.trailing.equalToSuperview()
+        }
         stackView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(24)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.leading.trailing.equalToSuperview().inset(16)
         }
+        
         tableView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(600)
         }
 
@@ -86,7 +100,7 @@ extension PopularActorsViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return popularActors.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActorCell", for: indexPath) as! ActorTableViewCell
         let actor = popularActors[indexPath.row]
@@ -94,4 +108,3 @@ extension PopularActorsViewController: UITableViewDelegate, UITableViewDataSourc
         return cell
     }
 }
-

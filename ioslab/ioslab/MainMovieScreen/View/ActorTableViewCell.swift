@@ -13,7 +13,7 @@ class ActorTableViewCell: UITableViewCell {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 20
+        imageView.layer.cornerRadius = 30
         imageView.clipsToBounds = true
         imageView.backgroundColor = .lightGray
         return imageView
@@ -43,14 +43,14 @@ class ActorTableViewCell: UITableViewCell {
             make.leading.equalToSuperview().offset(8)
             make.top.equalToSuperview().offset(8)
             make.bottom.equalToSuperview().offset(-8)
-            make.width.equalTo(40)
+            make.width.equalTo(60)
             make.height.equalTo(profileImageView.snp.width)
         }
         
         nameLabel.snp.makeConstraints { make in
             make.leading.equalTo(profileImageView.snp.trailing).offset(8)
+            make.top.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-8)
-            make.centerY.equalToSuperview()
         }
     }
     
