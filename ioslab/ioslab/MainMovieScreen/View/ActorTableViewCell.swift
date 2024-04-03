@@ -31,8 +31,8 @@ class ActorTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let actorPopularityView = ActorPopularityView()
-    private let popularityView = KnownForPopularityView()
+    private let actorProgressPopularityView = ProgressView()
+    private let progressPopularityView = ProgressView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -46,8 +46,8 @@ class ActorTableViewCell: UITableViewCell {
     private func setupViews() {
         addSubview(profileImageView)
         addSubview(nameLabel)
-        addSubview(actorPopularityView)
-        addSubview(popularityView)
+        addSubview(actorProgressPopularityView)
+        addSubview(progressPopularityView)
         
         profileImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(8)
@@ -63,24 +63,24 @@ class ActorTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview().offset(-8)
         }
         
-        popularityView.snp.makeConstraints { make in
+        progressPopularityView.snp.makeConstraints { make in
             make.leading.equalTo(nameLabel.snp.leading)
-            make.top.equalTo(nameLabel.snp.bottom).inset(-10)
+            make.top.equalTo(nameLabel.snp.bottom).inset(-20)
         }
-        actorPopularityView.snp.makeConstraints { make in
-            make.leading.equalTo(popularityView.snp.leading)
-            make.top.equalTo(popularityView.snp.bottom).inset(-16)
+        actorProgressPopularityView.snp.makeConstraints { make in
+            make.leading.equalTo(progressPopularityView.snp.leading)
+            make.top.equalTo(progressPopularityView.snp.bottom).inset(-16)
         }
     }
     
     func configure(with actor: ActorResult, knownFor: [KnownFor], cellWidth: CGFloat) {
         nameLabel.text = actor.name
-
+        
         if let firstKnownFor = knownFor.first {
-            popularityView.setPopularity(knownFor: firstKnownFor)
+            progressPopularityView.setProgress(progress: firstKnownFor.popularity, colors: [UIColor(red: 0.6, green: 0.9, blue: 0.6, alpha: 1.0), UIColor(red: 0.1, green: 0.5, blue: 0.1, alpha: 1.0)])
         }
         
-        actorPopularityView.setActorPopularity(actor: actor)
+        actorProgressPopularityView.setProgress(progress: actor.popularity, colors: [UIColor(red: 1.0, green: 0.8, blue: 0.4, alpha: 1.0), UIColor.red])
         
         let profilePath = actor.profilePath ?? ""
         if let imageUrl = imageUrlService.imageUrl(forPath: profilePath) {
