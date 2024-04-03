@@ -73,7 +73,7 @@ class PopularActorsViewController: UIViewController {
         
         tableView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(600)
+            make.height.equalTo(700)
         }
 
         tableView.delegate = self
@@ -104,7 +104,9 @@ extension PopularActorsViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActorCell", for: indexPath) as! ActorTableViewCell
         let actor = popularActors[indexPath.row]
-        cell.configure(with: actor)
+        let knownFor = actor.knownFor 
+        cell.configure(with: actor, knownFor: knownFor, cellWidth: tableView.bounds.width)
         return cell
     }
+
 }

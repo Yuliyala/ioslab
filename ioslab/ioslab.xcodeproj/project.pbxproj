@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B2458BE72B4DD63900D247B4 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2458BE62B4DD63900D247B4 /* MovieModel.swift */; };
 		B249412D2BB7500C0028FE45 /* ActorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B249412C2BB7500C0028FE45 /* ActorTableViewCell.swift */; };
+		B249412F2BBDBA8A0028FE45 /* KnownForPopularityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B249412E2BBDBA8A0028FE45 /* KnownForPopularityView.swift */; };
+		B24941312BBDC9760028FE45 /* ActorPopularityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24941302BBDC9760028FE45 /* ActorPopularityView.swift */; };
 		B29A074F2B586F4F007DF958 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29A074E2B586F4F007DF958 /* CategoryViewController.swift */; };
 		B29A07512B586F7E007DF958 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29A07502B586F7E007DF958 /* MovieDetailViewController.swift */; };
 		B29A07562B59C7D9007DF958 /* RatingBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29A07552B59C7D9007DF958 /* RatingBadgeView.swift */; };
@@ -39,6 +41,8 @@
 		8E43D829E05F2705569AA2D3 /* Pods-ioslab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ioslab.debug.xcconfig"; path = "Target Support Files/Pods-ioslab/Pods-ioslab.debug.xcconfig"; sourceTree = "<group>"; };
 		B2458BE62B4DD63900D247B4 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		B249412C2BB7500C0028FE45 /* ActorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorTableViewCell.swift; sourceTree = "<group>"; };
+		B249412E2BBDBA8A0028FE45 /* KnownForPopularityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownForPopularityView.swift; sourceTree = "<group>"; };
+		B24941302BBDC9760028FE45 /* ActorPopularityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorPopularityView.swift; sourceTree = "<group>"; };
 		B29A074E2B586F4F007DF958 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		B29A07502B586F7E007DF958 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		B29A07552B59C7D9007DF958 /* RatingBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingBadgeView.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 				B2B84EDE2B7D09EC00BF51E2 /* CategoryViewController+Collection.swift */,
 				B2DAB3842BB36E130027A758 /* PopularActorsViewController.swift */,
 				B249412C2BB7500C0028FE45 /* ActorTableViewCell.swift */,
+				B249412E2BBDBA8A0028FE45 /* KnownForPopularityView.swift */,
+				B24941302BBDC9760028FE45 /* ActorPopularityView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -332,6 +338,7 @@
 				B2B8C7082B9453AD001BABB3 /* NetworkConfig.swift in Sources */,
 				B29CE8C02B55C6EB0060BA13 /* ScrollContainerView.swift in Sources */,
 				B29A07512B586F7E007DF958 /* MovieDetailViewController.swift in Sources */,
+				B24941312BBDC9760028FE45 /* ActorPopularityView.swift in Sources */,
 				B2ABECFE2B402C5400D8DE47 /* SceneDelegate.swift in Sources */,
 				B29CE8BE2B554C720060BA13 /* ContainerViewController.swift in Sources */,
 				B29CE8BA2B554BF60060BA13 /* MovieCollectionViewCell.swift in Sources */,
@@ -344,6 +351,7 @@
 				B2E4688D2B9757AD001BA668 /* HTTPStatus.swift in Sources */,
 				B249412D2BB7500C0028FE45 /* ActorTableViewCell.swift in Sources */,
 				B2E4688F2B9757ED001BA668 /* HTTPMethods.swift in Sources */,
+				B249412F2BBDBA8A0028FE45 /* KnownForPopularityView.swift in Sources */,
 				B2CD60552BA30F2500509446 /* ImageUrlService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
