@@ -12,7 +12,7 @@ import Alamofire
 
 final class CategoryViewController: UIViewController {
     var movies: [MovieResult] = []
-    private var category: MainScreenMovieCategory!
+    private var category: MainScreenCategory!
     var movieService = MovieApiService()
     
     private var titleLabel: UILabel = {
@@ -24,7 +24,7 @@ final class CategoryViewController: UIViewController {
     
     private var collectionView: UICollectionView!
     
-    init(category: MainScreenMovieCategory) {
+    init(category: MainScreenCategory) {
         self.category = category
         super.init(nibName: nil, bundle: nil)
     }
@@ -47,7 +47,7 @@ final class CategoryViewController: UIViewController {
             return
         }
         
-        movieService.fetchMoviesFromAPI(for: requestType) { [weak self] result in
+        movieService.fetchMoviesFromAPI (for: requestType) { [weak self] result in
             switch result {
             case .success(let movieResponse):
                 self?.movies = movieResponse.results
