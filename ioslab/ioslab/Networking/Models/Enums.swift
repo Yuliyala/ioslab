@@ -11,6 +11,7 @@ enum RequestType: String, UrlPathConvertible {
     case nowPlaying = "3/movie/now_playing"
     case popular = "3/movie/popular"
     case topRated = "3/movie/top_rated"
+    case popularActors = "3/person/popular"
     
     var path: String {
         return self.rawValue

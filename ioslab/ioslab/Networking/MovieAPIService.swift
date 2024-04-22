@@ -23,13 +23,20 @@ class MovieApiService {
         }
     }
     
-    private func handleAPICallResult(apiCallResult: Result<Data, NetworkLayerError>, completion: @escaping (Result<Movie, NetworkLayerError>) -> Void) {
+    func fetchActorsFromAPI(completion: @escaping (Result<Actor, NetworkLayerError>) -> Void) {
+        let path = "3/person/popular"
+        let request = HTTPRequest(method: .get, baseUrl: networkConfig.basicURLString, path: path, queryParameters: [])
+        apiClient.fetchData(request: request) { apiCallResult in
+            self.handleAPICallResult(apiCallResult: apiCallResult, completion: completion)
+        }
+    }
+    private func handleAPICallResult<T: Decodable>(apiCallResult: Result<Data, NetworkLayerError>, completion: @escaping (Result<T, NetworkLayerError>) -> Void) {
         switch apiCallResult {
         case .success(let data):
             do {
                 let decoder = JSONDecoder()
-                let moviesArray = try decoder.decode(Movie.self, from: data)
-                completion(.success(moviesArray))
+                let decodedData = try decoder.decode(T.self, from: data)
+                completion(.success(decodedData))
             } catch {
                 print("An unexpected error occurred: \(error)")
                 completion(.failure(.decodingError))

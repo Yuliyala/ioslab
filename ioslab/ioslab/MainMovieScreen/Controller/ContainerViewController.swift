@@ -11,7 +11,7 @@ class ContainerViewController: UIViewController {
     
     private var rootView: ScrollContainerView!
     private var controllers: [UIViewController] = []
-    
+    private var actorsController: PopularActorsViewController!
     override func loadView() {
         rootView = ScrollContainerView()
         self.view = rootView
@@ -20,17 +20,24 @@ class ContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        addCategoryController(for: .nowPlaying)
-        addCategoryController(for: .topRated)
-        addCategoryController(for: .popular)
+        addCategoryController(for: .nowPlayingMovies)
+        addCategoryController(for: .topRatedMovies)
+        addCategoryController(for: .popularMovies)
+        addActorsController()
     }
     
-    private func addCategoryController(for category: MainScreenMovieCategory) {
+    private func addCategoryController(for category: MainScreenCategory) {
         let categoryController = CategoryViewController(category: category)
         categoryController.title = category.title
         controllers.append(categoryController)
         rootView.addViewToContainer(categoryController.view)
         addChild(categoryController)
         categoryController.loadMovies()
+    }
+    private func addActorsController() {
+        let actorsController = PopularActorsViewController()
+        controllers.append(actorsController)
+        rootView.addViewToContainer(actorsController.view)
+        addChild(actorsController)
     }
 }
