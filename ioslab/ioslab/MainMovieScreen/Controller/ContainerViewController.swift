@@ -12,7 +12,6 @@ class ContainerViewController: UIViewController {
     private var rootView: ScrollContainerView!
     private var controllers: [UIViewController] = []
     private var actorsController: PopularActorsViewController!
-    
     override func loadView() {
         rootView = ScrollContainerView()
         self.view = rootView
@@ -30,7 +29,6 @@ class ContainerViewController: UIViewController {
     private func addCategoryController(for category: MainScreenCategory) {
         let categoryController = CategoryViewController(category: category)
         categoryController.title = category.title
-      
         controllers.append(categoryController)
         rootView.addViewToContainer(categoryController.view)
         addChild(categoryController)
