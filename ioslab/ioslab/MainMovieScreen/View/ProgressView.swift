@@ -52,9 +52,9 @@ class ProgressView: UIView {
     
     func updateView(progress: Double, colors: [UIColor]) {
         let minProgress: Double = 0
-        let maxProgress: Double = 100
+        let maxProgress: Double = 600
         
-        let minWidth: CGFloat = 20
+        let minWidth: CGFloat = 0
         let maxWidth: CGFloat = 220
         
         var width: CGFloat
